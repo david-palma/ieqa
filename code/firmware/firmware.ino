@@ -61,8 +61,8 @@ const short TEMP_MIN PROGMEM =    18;  // Minimum temperature
 const short RH_MAX   PROGMEM =    70;  // Maximum humidity
 const short LUX_MIN  PROGMEM =   100;  // Minimum lux
 
-// For more details see /etc/config/network on the boards (the other board is "192.168.43.200")
-#define IP_BOARD "192.168.43.100"
+// For more details see /etc/config/network on the boards (the other board is "192.168.43.20")
+#define IP_BOARD "192.168.43.10"
 #define FILENAME "/mnt/sd/datalog.txt"
 
 /* Prototypes */
