@@ -4,7 +4,7 @@ The I.E.Q.A. system consists of spatially distributed autonomous base stations e
 Every single base station is able to send their acquired/stored data over WiFi in a Wireless Local Area Network (WLAN) to a virtual Linux server which is aimed to process and display data through a dedicated web application. The latter, processes the data using a mathematical model based on the combination of two parameters: Heat Index (HI), which is obtained by multiple regression analysis by considering the values of temperature and relative humidity, and the Luminosity-Brightness Index (LBI) that provides an index based on the detected brightness according to [UNI EN 12464](http://store.uni.com/magento-1.4.0.1/index.php/uni-en-12464-1-2011.html) (released by the [Italian National Unification](http://www.uni.com)).
 
 <p align="center">
-    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" style="max-width:100%;">
+    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" style="max-width:70%;">
 </p>
 
 ## Functionalities
@@ -23,7 +23,7 @@ Every single base station is able to send their acquired/stored data over WiFi i
 * _Set the sampling rate_: allows to set the time interval between two consecutive acquisitions on the desired base station/s;
 * _Set the alarm thresholds_: allows to set the alarm thresholds for each sensor (e.g., temperature, relative humidity, and brightness/luminosity) on the desired base station/s.
 
-### Main base station futures
+### Main base station features
 
 * _Connection_: each BS is able to automatically connect to the WLAN network with a static IP;
 * _Time synchronization_: the device can synchronize its clock time with the server;
