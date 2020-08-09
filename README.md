@@ -7,9 +7,17 @@ Every single base station is able to send their acquired/stored data over WiFi i
     <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" width="400px;"></img>
 </p>
 
-## Functionalities
+For more details explore the following sections:
 
-### Main server views
+- [Main features](#main-features)
+- [Network](#network)
+- [Hardware](#hardware)
+- [Firmware](./code/firmware)
+- [Web application](./code/webapp)
+
+## Main features
+
+### Server
 
 * _Dashboard_: shows in real time the relevant data using charts and tables to illustrate the most important informations;
 * _Graphs_: shows in real time detailed graphs in order to analyze data;
@@ -17,13 +25,13 @@ Every single base station is able to send their acquired/stored data over WiFi i
 * _Report_: uses the processed data to print statistical report;
 * _Options_: allows to edit/apply various option (see functionalities for the user).
 
-### Main user functionalities
+### User
 
 * _Empty the table_: allows to truncate through a SQL query of the database table which contains the all acquired values;
 * _Set the sampling rate_: allows to set the time interval between two consecutive acquisitions on the desired base station/s;
 * _Set the alarm thresholds_: allows to set the alarm thresholds for each sensor (e.g., temperature, relative humidity, and brightness/luminosity) on the desired base station/s.
 
-### Main base station features
+### Base station
 
 * _Connection_: each BS is able to automatically connect to the WLAN network with a static IP;
 * _Time synchronization_: the device can synchronize its clock time with the server;
@@ -32,3 +40,30 @@ Every single base station is able to send their acquired/stored data over WiFi i
 * _Actuator_: each BS has been predisposed to easily drive an actuator;
 * _Self-diagnostic_: the device can easily identify when a fault has occurred.
 * _LCD and Reset_: each BS has endowed with a reset button and a display with backlight that shows all informations about the system.
+
+## Network
+
+### Network configuration
+The following table illustrates an example of network configuration of the whole system implemented using two base stations.
+
+|               |      BS #0      |      BS #1      |       Host      |   Virtual web   |
+|---------------|:---------------:|:---------------:|:---------------:|:---------------:|
+| Address       |  192.168.43.10  |  192.168.43.20  |  192.168.43.61  |  192.168.43.100 |
+| Netmask       |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |
+| Wildcard mask |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |
+| Network       | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 |
+| Broadcast     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
+| Gateway       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
+
+<p align="center">
+    <img src="./figures/fig2.png" alt="Detailed diagram of the network." title="Detailed diagram of the network" width="400px;"></img>
+</p>
+
+In this case, the system is composed of 4 hosts, leaving space for another
+**NOTE**:  in order to allow the _handover_ between nodes (or devices) and WLAN, it is possible to use multiple access points (APs).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+$e^{i\pi} + 1 = 0$.
