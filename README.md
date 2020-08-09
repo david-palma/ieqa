@@ -4,7 +4,7 @@ The I.E.Q.A. system consists of spatially distributed autonomous base stations e
 Every single base station is able to send their acquired/stored data over WiFi in a Wireless Local Area Network (WLAN) to a virtual Linux server which is aimed to process and display data through a dedicated web application. The latter, processes the data using a mathematical model based on the combination of two parameters: Heat Index (HI), which is obtained by multiple regression analysis by considering the values of temperature and relative humidity, and the Luminosity-Brightness Index (LBI) that provides an index based on the detected brightness according to [UNI EN 12464](http://store.uni.com/magento-1.4.0.1/index.php/uni-en-12464-1-2011.html) (released by the [Italian National Unification](http://www.uni.com)).
 
 <p align="center">
-    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" style="max-width:100%;">
+    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" width="100%;"></img>
 </p>
 
 ## Functionalities
@@ -32,3 +32,17 @@ Every single base station is able to send their acquired/stored data over WiFi i
 * _Actuator_: each BS has been predisposed to easily drive an actuator;
 * _Self-diagnostic_: the device can easily identify when a fault has occurred.
 * _LCD and Reset_: each BS has endowed with a reset button and a display with backlight that shows all informations about the system.
+
+## Network
+
+### Network configuration
+In the following table it can be seen the network configuration of the whole system.
+
+|               |      BS #0      |      BS #1      |       Host      |   Virtual web   |
+|---------------|:---------------:|:---------------:|:---------------:|:---------------:|
+| Address       |  192.168.43.10  |  192.168.43.20  |  192.168.43.61  |  192.168.43.100 |
+| Netmask       |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |
+| Wildcard mask |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |
+| Network       | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 |
+| Broadcast     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
+| Gateway       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
