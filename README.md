@@ -59,11 +59,10 @@ The following table illustrates an example of network configuration of the whole
     <img src="./figures/fig2.png" alt="Detailed diagram of the network." title="Detailed diagram of the network" width="400px;"></img>
 </p>
 
-In this case, the system is composed of 4 hosts, leaving space for another
+In this case, the system is composed of 4 hosts, leaving space for another 249 hosts.
+
 **NOTE**:  in order to allow the _handover_ between nodes (or devices) and WLAN, it is possible to use multiple access points (APs).
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-$e^{i\pi} + 1 = 0$.
