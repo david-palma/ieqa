@@ -30,17 +30,3 @@ Every single base station is able to send their acquired/stored data over WiFi i
 * _Actuator_: each BS has been predisposed to easily drive an actuator;
 * _Self-diagnostic_: the device can easily identify when a fault has occurred.
 * _LCD and Reset_: each BS has endowed with a reset button and a display with backlight that shows all informations about the system.
-
-## Network
-
-### Network configuration
-In the following table it can be seen the network configuration of the whole system.
-
-|               |      BS #0      |      BS #1      |       Host      |   Virtual web   |
-|---------------|:---------------:|:---------------:|:---------------:|:---------------:|
-| Address       |  192.168.43.10  |  192.168.43.20  |  192.168.43.61  |  192.168.43.100 |
-| Netmask       |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |
-| Wildcard mask |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |
-| Network       | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 |
-| Broadcast     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
-| Gateway       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
