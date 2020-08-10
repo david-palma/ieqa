@@ -46,14 +46,14 @@ For more details explore the following sections:
 ### Network configuration
 The following table illustrates an example of network configuration of the whole system implemented using two base stations.
 
-|               |      BS #0      |      BS #1      |       Host      |   Virtual web   |
-|---------------|:---------------:|:---------------:|:---------------:|:---------------:|
-| Address       |  192.168.43.10  |  192.168.43.20  |  192.168.43.61  |  192.168.43.100 |
-| Netmask       |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |
-| Wildcard mask |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |
-| Network       | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 |
-| Broadcast     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
-| Gateway       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
+|                   |      BS #0      |      BS #1      |       Host      |   Virtual web   |
+|-------------------|:---------------:|:---------------:|:---------------:|:---------------:|
+| **Address**       |  192.168.43.10  |  192.168.43.20  |  192.168.43.61  |  192.168.43.100 |
+| **Netmask**       |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |  255.255.255.0  |
+| **Wildcard mask** |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |    0.0.0.255    |
+| **Network**       | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 | 192.168.43.0/24 |
+| **Broadcast**     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
+| **Gateway**       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
 
 <p align="center">
     <img src="./figures/fig2.png" alt="Detailed diagram of the network." title="Detailed diagram of the network" width="400px;"></img>
@@ -62,6 +62,71 @@ The following table illustrates an example of network configuration of the whole
 In this case, the system is composed of 4 hosts, leaving space for another 249 hosts.
 
 **NOTE**:  in order to allow the _handover_ between nodes (or devices) and WLAN, it is possible to use multiple access points (APs).
+
+### Communication
+
+Each base station has built-in WiFi module that supports IEEE 802.11 b/g/n standard compliant 2.4 GHz as described in the table (supporting WEP, WPA, and WPA2 encryption).
+
+|   Standard   | Frequency | Bandwidth | Modulation | Range (approx.) |
+|:------------:|:---------:|:---------:|:----------:|:---------------:|
+| **802.11 b** |  2.4 GHz  |   22 MHz  |    DSSS    |       35 m      |
+| **802.11 g** |  2.4 GHz  |   20 MHz  |    OFDM    |       35 m      |
+| **802.11 n** |  2.4 GHz  |   20 MHz  |  MIMO-OFDM |       70 m      |
+
+In order to achieve a better interoperability, reliability, scalability, and fast performance, the client/server communication takes place in accordance with the **RE**presentational **S**tate **T**ransfer (REST) architectural style. Thus, the standard communication protocol used to share informations and data, is the Hypertext Transfer Protocol (HTTP) making use of the following two methods:
+
+- **HTTP GET method** requests a representation of the specified resource. Requests using GET should only retrieve data and should have no other effect. This method is used by the base stations to get the updated values of alarm thresholds and sampling rate or to syncronize the clock of the Linino kernel with the server.
+- **HTTP POST method** requests that the server accept the entity enclosed in the request as a new subordinate of the web resource identified by the URI. This method is used by the base stations to post data (acquired or stored into the microSD card) to the server.
+
+All data are formatted in JSON format, which vary depending on the method used.
+
+### Server virtualization
+
+The dynamic web application has been developed making use of the LAMP (Linux, Apache, MySQL, PHP) stack on a Debian-based Linux operating system with no GUI, which has been virtualized using the [Oracle VirtualBox](https://www.virtualbox.org/) platform (a cross-platform virtualization application). The connection mode has been set to _bridged network_, so Oracle VM VirtualBox connects to one of the installed network cards and exchanges network packets directly, circumventing the host operating system's network stack.
+
+#### Bridged Networking
+
+With bridged networking, VirtualBox uses a device driver on the host system that filters data from the physical network adapter. This driver is therefore called a "net filter" driver and it allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When the guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. From the following screenshots it can be seen the network settings of the server on VirtualBox and the network configuration detected on the Host.
+
+<p align="center">
+    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="700px;"></img>
+</p>
+
+## Hardware
+
+### List (with a brief description) of the hardware components
+
+#### Arduino Yún
+
+The Arduino Yún is the core of the base station and it consists of a microcontroller board based on the ATmega32u4 and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun.
+The board has built-in Ethernet and WiFi support, a USB-A port, micro-SD card slot, 20 digital input/output pins (of which 7 can be used as PWM outputs and 12 as analog inputs), a 16 MHz crystal oscillator, a micro USB connection, an ICSP header, and a 3 reset buttons.
+The Yún distinguishes itself from other Arduino boards in that it can communicate with the Linux distribution onboard, offering a powerful networked computer.
+For more details see [Arduino website](https://www.arduino.cc/).
+
+#### Luminosity sensor TSL2561
+
+The TSL2561 luminosity sensor is an advanced I2C digital light sensor equipped with both infrared and full-spectrum diodes allowing for exact illuminance calculation. This sensor is very precise and can be configured for different gain/timing ranges to detect light ranges from up to 0.1-40000+ Lux on the fly. The current draw is extremely low, so its great for low power data-logging systems, about 0.5 mA when actively sensing, and less than 15 uA when in powerdown mode.
+For more details see [Adafruit website](https://www.adafruit.com/).
+
+#### Humidity and Temperature sensor HTU21D-F
+
+This is an I2C digital device with dedicated humidity and temperature transducers for applications where reliable and accurate measurements are needed.
+The temperature output has an accuracy of ±1°C from -30∼90°C. This low power sensor is designed for high volume and cost sensitive applications with tight space constraints and it works with any kind of microcontroller with 3.3V-5V power or logic.
+For more details see [Adafruit website](https://www.adafruit.com/).
+
+#### 16x4 LCD blue backlight
+
+This is a 16x4 character LCD with white text on a vivid blue background. Moreover, the single LED backlight included can be dimmed with a resistor (or PWM). This device has a compatible Hitachi HD44780 driver and can be fully controlled with only 6 digital lines. The LCD reports the operating conditions of the system, such as id station number, temperature, relative humidity, luminosity, and connection status.
+
+### Schematic of the base station and prototype
+
+<p align="center">
+    <img src="./figures/fig4.png" alt="Basic schematic of the base station." title="Basic schematic of the base station" width="700px;"></img>
+</p>
+
+<p align="center">
+    <img src="./figures/fig5.png" alt="Prototype of the base station." title="Prototype of the base station" width="300px;"></img>
+</p>
 
 ## License
 
