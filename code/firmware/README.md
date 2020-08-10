@@ -36,13 +36,13 @@ There are two special functions that are a part of every Arduino sketch: `setup(
 - **Setup routine**
 
 <p align="center">
-    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="350px;"></img>
+    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="375px;"></img>
 </p>
 
 - **Loop routine**
 
 <p align="center">
-    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="350px;"></img>
+    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="375px;"></img>
 </p>
 
 ### Libraries
@@ -127,7 +127,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   Then, an actuator is enabled/disabled as follows: when the input is higher than a chosen threshold, the output will be enabled, whereas when the input is below a different (lower) calculated threshold the output will be disabled. When the input is between the two levels, the output retains its status (see the figure below).
 
 <p align="center">
-    <img src="../../figures/fig9.png" alt="Alarm hysteresis." title="Alarm hysteresis" width="600px;"></img>
+    <img src="../../figures/fig9.png" alt="Alarm hysteresis." title="Alarm hysteresis" width="650px;"></img>
 </p>
 
 - `data_acquisition`
