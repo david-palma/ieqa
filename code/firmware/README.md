@@ -36,5 +36,11 @@ There are two special functions that are a part of every Arduino sketch: `setup(
 ### Setup routine
 
 <p align="center">
-    <img src="../../figures/fig7.png" alt="Board architecture." title="Board architecture" width="700px;"></img>
+    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="450px;"></img>
+</p>
+
+### Loop routine
+
+<p align="center">
+    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="450px;"></img>
 </p>
