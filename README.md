@@ -89,7 +89,7 @@ The dynamic web application has been developed making use of the LAMP (Linux, Ap
 With bridged networking, VirtualBox uses a device driver on the host system that filters data from the physical network adapter. This driver is therefore called a "net filter" driver and it allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When the guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. From the following screenshots it can be seen the network settings of the server on VirtualBox and the network configuration detected on the Host.
 
 <p align="center">
-    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="100%;"></img>
+    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="400px;"></img>
 </p>
 
 ## Hardware
