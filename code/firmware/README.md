@@ -29,20 +29,22 @@ The Bridge library facilitates communication between the two processors, giving 
 | EEPROM                          | 1 KB                                                                                         | EEPROM               | 1 KB                                                                              |
 | Clock Speed                     | 16 MHz                                                                                       | Clock Speed          | 16 MHz                                                                            |
 
-## Structure of the frimware
+## Structure of the firmware
 
 There are two special functions that are a part of every Arduino sketch: `setup()` and `loop()`. The `setup()` is called once, when the sketch starts. The `loop()` function is called over and over and is heart of the sketch.
 
-### Setup routine
+- **Setup routine**
 
 <p align="center">
-    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="400px;"></img>
+    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="350px;"></img>
 </p>
 
-### Loop routine
+- **Loop routine**
 
 <p align="center">
-    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="400px;"></img>
+    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="350px;"></img>
 </p>
 
 ### Libraries
+
+- `Bridge.h`
