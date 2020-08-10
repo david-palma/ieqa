@@ -125,7 +125,7 @@ This is a 16x4 character LCD with white text on a vivid blue background. Moreove
 </p>
 
 <p align="center">
-    <img src="./figures/fig5.png" alt="Prototype of the base station." title="Prototype of the base station" width="300px;"></img>
+    <img src="./figures/fig5.png" alt="Prototype of the base station." title="Prototype of the base station" width="400px;"></img>
 </p>
 
 ## License
