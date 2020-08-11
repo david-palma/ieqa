@@ -19,27 +19,27 @@ For more details explore the following sections:
 
 ### Server
 
-- _Dashboard_: shows in real time the relevant data using charts and tables to illustrate the most important informations;
-- _Graphs_: shows in real time detailed graphs in order to analyze data;
-- _Statistics_: shows in real time statistics, boxplots and graphs to make statistical analysis of data;
-- _Report_: uses the processed data to print statistical report;
-- _Options_: allows to edit/apply various option (see functionalities for the user).
+- *Dashboard*: shows in real time the relevant data using charts and tables to illustrate the most important informations;
+- *Graphs*: shows in real time detailed graphs in order to analyze data;
+- *Statistics*: shows in real time statistics, boxplots and graphs to make statistical analysis of data;
+- *Report*: uses the processed data to print statistical report;
+- *Options*: allows to edit/apply various option (see functionalities for the user).
 
 ### User
 
-- _Empty the table_: allows to truncate through a SQL query of the database table which contains the all acquired values;
-- _Set the sampling rate_: allows to set the time interval between two consecutive acquisitions on the desired base station/s;
-- _Set the alarm thresholds_: allows to set the alarm thresholds for each sensor (e.g., temperature, relative humidity, and brightness/luminosity) on the desired base station/s.
+- *Empty the table*: allows to truncate through a SQL query of the database table which contains the all acquired values;
+- *Set the sampling rate*: allows to set the time interval between two consecutive acquisitions on the desired base station/s;
+- *Set the alarm thresholds*: allows to set the alarm thresholds for each sensor (e.g., temperature, relative humidity, and brightness/luminosity) on the desired base station/s.
 
 ### Base station
 
-- _Connection_: each BS is able to automatically connect to the WLAN network with a static IP;
-- _Time synchronization_: the device can synchronize its clock time with the server;
-- _Storage device_: in offline mode the acquired data are stored into a microSD card. Then, as soon as the connection has been re-established, the saved data will be automatically sent to the server;
-- _Programmable_: it is possible to edit the firmware code setting different alarm thresholds and sampling rate directly from the server;
-- _Actuator_: each BS has been predisposed to easily drive an actuator;
-- _Self-diagnostic_: the device can easily identify when a fault has occurred.
-- _LCD and Reset_: each BS has endowed with a reset button and a display with backlight that shows all informations about the system.
+- *Connection*: each BS is able to automatically connect to the WLAN network with a static IP;
+- *Time synchronization*: the device can synchronize its clock time with the server;
+- *Storage device*: in offline mode the acquired data are stored into a microSD card. Then, as soon as the connection has been re-established, the saved data will be automatically sent to the server;
+- *Programmable*: it is possible to edit the firmware code setting different alarm thresholds and sampling rate directly from the server;
+- *Actuator*: each BS has been predisposed to easily drive an actuator;
+- *Self-diagnostic*: the device can easily identify when a fault has occurred.
+- *LCD and Reset*: each BS has endowed with a reset button and a display with backlight that shows all informations about the system.
 
 ## Network
 
@@ -61,7 +61,7 @@ The following table illustrates an example of network configuration of the whole
 
 In this case, the system is composed of 4 hosts, leaving space for another 249 hosts.
 
-**NOTE**:  in order to allow the _handover_ between nodes (or devices) and WLAN, it is possible to use multiple access points (APs).
+**NOTE**:  in order to allow the *handover* between nodes (or devices) and WLAN, it is possible to use multiple access points (APs).
 
 ### Communication
 
@@ -82,33 +82,33 @@ All data are formatted in JSON format, which vary depending on the method used.
 
 ### Server virtualization
 
-The dynamic web application has been developed making use of the LAMP (Linux, Apache, MySQL, PHP) stack on a Debian-based Linux operating system with no GUI, which has been virtualized using the [Oracle VirtualBox](https://www.virtualbox.org/) platform (a cross-platform virtualization application). The connection mode has been set to _bridged network_, so Oracle VM VirtualBox connects to one of the installed network cards and exchanges network packets directly, circumventing the host operating system's network stack.
+The dynamic web application has been developed making use of the LAMP (Linux, Apache, MySQL, PHP) stack on a Debian-based Linux operating system with no GUI, which has been virtualized using the [Oracle VirtualBox](https://www.virtualbox.org/) platform (a cross-platform virtualization application). The connection mode has been set to *bridged network*, so Oracle VM VirtualBox connects to one of the installed network cards and exchanges network packets directly, circumventing the host operating system's network stack.
 
 #### Bridged Networking
 
 With bridged networking, VirtualBox uses a device driver on the host system that filters data from the physical network adapter. This driver is therefore called a "net filter" driver and it allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When the guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. From the following screenshots it can be seen the network settings of the server on VirtualBox and the network configuration detected on the Host.
 
 <p align="center">
-    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="400px;"></img>
+    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="500px;"></img>
 </p>
 
 ## Hardware
 
 ### List (with a brief description) of the hardware components
 
-- _Arduino Yún_
+- *Arduino Yún*
 
   The Arduino Yún is the core of the base station and it consists of a microcontroller board based on the ATmega32u4 and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun. The board has built-in Ethernet and WiFi support, a USB-A port, micro-SD card slot, 20 digital input/output pins (of which 7 can be used as PWM outputs and 12 as analog inputs), a 16 MHz crystal oscillator, a micro USB connection, an ICSP header, and a 3 reset buttons. The Yún distinguishes itself from other Arduino boards in that it can communicate with the Linux distribution onboard, offering a powerful networked computer. For more details see [Arduino website](https://www.arduino.cc/).
 
-- _Luminosity sensor TSL2561_
+- *Luminosity sensor TSL2561*
 
   The TSL2561 luminosity sensor is an advanced I2C digital light sensor equipped with both infrared and full-spectrum diodes allowing for exact illuminance calculation. This sensor is very precise and can be configured for different gain/timing ranges to detect light ranges from up to 0.1-40000+ Lux on the fly. The current draw is extremely low, so its great for low power data-logging systems, about 0.5 mA when actively sensing, and less than 15 uA when in powerdown mode. For more details see [Adafruit website](https://www.adafruit.com/).
 
-- _Humidity and Temperature sensor HTU21D-F_
+- *Humidity and Temperature sensor HTU21D-F*
 
   This is an I2C digital device with dedicated humidity and temperature transducers for applications where reliable and accurate measurements are needed. The temperature output has an accuracy of ±1°C from -30∼90°C. This low power sensor is designed for high volume and cost sensitive applications with tight space constraints and it works with any kind of microcontroller with 3.3V-5V power or logic. For more details see [Adafruit website](https://www.adafruit.com/).
 
-- _16x4 LCD blue backlight_
+- *16x4 LCD blue backlight*
 
   This is a 16x4 character LCD with white text on a vivid blue background. Moreover, the single LED backlight included can be dimmed with a resistor (or PWM). This device has a compatible Hitachi HD44780 driver and can be fully controlled with only 6 digital lines. The LCD reports the operating conditions of the system, such as id station number, temperature, relative humidity, luminosity, and connection status.
 

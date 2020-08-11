@@ -2,7 +2,7 @@
 
 In this section you can find a brief explanation of the Arduino Yún architecture and some technical specs (for more details see [Arduino website](https://www.arduino.cc/)), the structure of the firmware, the libraries used by the board to work properly, and the main functions implemented.
 
-**Note**: even though the firmware has not described in detail, the code is commented enough to be easily understood.
+**Note**: even though the firmware has not been described in detail, the code is commented enough to be easily understood.
 
 ## Arduino Yún architecture and technical specs
 
@@ -36,13 +36,13 @@ There are two special functions that are a part of every Arduino sketch: `setup(
 - **Setup routine**
 
 <p align="center">
-    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="375px;"></img>
+    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="400px;"></img>
 </p>
 
 - **Loop routine**
 
 <p align="center">
-    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="375px;"></img>
+    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="400px;"></img>
 </p>
 
 ### Libraries
@@ -145,7 +145,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   "Connection: close"
   ```
 
-  where _method_ is a string that identifies what needed by the board, e.g. could be "get_time/" to synchronize the clock with the server, or "get_threshold_values/" to update the threshold values.
+  where *method* is a string that identifies what needed by the board, e.g. could be "get_time/" to synchronize the clock with the server, or "get_threshold_values/" to update the threshold values.
 
 - `get_time`
 
@@ -181,7 +181,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   data
   ```
 
-  where _method_ is a string that identifies the type of connection (e.g., _close_ or _keep-alive_), data.length() is the length of the data acquired, and data is a string with the data to post.
+  where *method* is a string that identifies the type of connection (e.g., *close* or *keep-alive*), data.length() is the length of the data acquired, and data is a string with the data to post.
 
 - `send_from_microSD`
 
