@@ -1,7 +1,5 @@
 # Web application
 
-<!-- In this section you can find a brief explanation of the software architectural pattern, the mathematical model used to calculate the quality index, and the main functions implemented. -->
-
 The application software runs on a virtual Linux distribution (ubuntu server with LAMP web service solution stack *properly configured*) is based on a software architectural pattern named **Model-View-Controller** (MVC) implemented on the [CodeIgniter Web Framework](https://www.codeigniter.com/).
 Thus, it has been created a Controller, a Model, and some Views, as well as the database<sup>1</sup> to hold the information.
 
@@ -45,9 +43,9 @@ The three parts of the MVC are the follows:
 2. **View**: the second module implements visual representation of the model (user interface), including the logic to display data to the user and handle user interaction with the application.
 3. **Controller**: the last module is the (conceptual) link between the user and the system, it manages the user input and instructs the views for answering the user's request.
 
-<p align="center">
-    <img src="../../figures/fig10.png" alt="MVC pattern." title="MVC pattern" width="300px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig10.png" alt="MVC pattern." title="MVC pattern" width="300px;"/>
+</div>
 
 ### Architecture
 
@@ -73,9 +71,9 @@ while the MVC architecture is organized as follows:
 | **CONTROLLER** | ieqa.php                                                                                                                                                |
 |      **VIEWS** | analytics.php, dashboard.php, db_empty.php, error.php, footer.php, graphs.php, header.php, home.php, info.php, options.php, report.php, statistics.php  |
 
-<p align="center">
-    <img src="../../figures/fig11.png" alt="CI architecture." title="CI architecture" width="6000px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig11.png" alt="CI architecture." title="CI architecture" width="6000px;"/>
+</div>
 
 ### The model
 
@@ -139,24 +137,92 @@ A list of the main views follows:
 
 - `dashboard()`: it uses charts and tables to illustrate the most important informations;
 
-<p align="center">
-    <img src="../../figures/fig12.png" alt="Dashboard view." title="Dashboard view" width="5000px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig12.png" alt="Dashboard view." title="Dashboard view" width="5000px;"/>
+</div>
 
 - `graphs()`: it uses a graphic representation to perform time-series analysis;
 
-<p align="center">
-    <img src="../../figures/fig13.png" alt="Graphs view." title="Graphs view" width="5000px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig13.png" alt="Graphs view." title="Graphs view" width="5000px;"/>
+</div>
 
 - `statistics()`: it uses statistics and graphs (i.e., box-and-whisker plots) to make statistical analysis of data;
 
-<p align="center">
-    <img src="../../figures/fig14.png" alt="Dashboard view." title="Dashboard view" width="5000px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig14.png" alt="Dashboard view." title="Dashboard view" width="5000px;"/>
+</div>
 
 - `options()`: it allows a user to delete all the entries available in the database or to edit various options (e.g., threshold values and sampling rate) on a specific board.
 
-<p align="center">
-    <img src="../../figures/fig15.png" alt="Dashboard view." title="Dashboard view" width="5000px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig15.png" alt="Dashboard view." title="Dashboard view" width="5000px;"/>
+</div>
+
+## The mathematical model
+
+Indoor environmental quality is one of the primary environmental health risks, thus, to maintain the desired level of comfort, it is essential to perform indoor environmental quality monitoring in all buildings.
+
+To estimate the environmental health of an indoor space, it has been developed a model that combines the **Temperature-Humidity Index (THI)** and **Heat Index (HI)**, which are a measures that account for the combined effects of environmental temperature and relative humidity to assess the degree of discomfort experienced by an individual, and the **Luminosity-Brightness Index (LBI)** that provides an index based on the detected brightness.
+
+### Temperature-Humidity Index (THI) and Heat Index (HI)
+
+The two indices lead to important considerations for the human body's comfort. When the body gets too hot, it begins to perspire or sweat to cool itself off. If the perspiration is not able to evaporate, the body cannot regulate its temperature. Evaporation is a cooling process. When perspiration is evaporated off the body, it effectively reduces the body's temperature. When the atmospheric moisture content (i.e. relative humidity) is high, the rate of perspiration from the body decreases. In other words, the human body feels warmer in humid conditions. The opposite is true when the relative humidity decreases because the rate of perspiration increases. The body actually feels cooler in arid conditions.
+
+#### Temperature-Humidity Index calculation
+
+Temperature-Humidity Index is a measure of the reaction of the human body to a combination of heat and humidity [1]  and it is calculated on the base of several formulas, which corroborate air temperature and relative humidity. There are two  calculation approaches of the aforementioned index, "a-dimensionally" and in Celsius degrees.
+
+<!-- $$
+T\!H\!I = (T \cdot 1.8 + 32) - (0.55 - 0.0055 \cdot H)\cdot[(T \cdot 1.8 + 32) - 58]
+$$ -->
+
+<div align="center"><img src="..\..\svg\sjnIESpbTE.svg"/></div>
+
+where T is the air temperature in Celsius degrees and H is the relative humidity in percentage. If THI is:
+
+- below 65 it means comfort state;
+- between 65 and 80 it means alert state;
+- above 80 it means discomfort state.
+
+[1] E.C. Thom, "*The discomfort index*", Weatherwise, 12(2), pp. 57-61, 1959.
+
+#### Heat Index calculation
+
+There is direct relationship between the air temperature and relative humidity and the heat index, meaning as the air temperature and relative humidity increase (decrease), the heat index increases (decrease).
+The function that makes the computation it is the result of a multivariate fit to a model of the human body [1,2]. This equation approximates the heat index to and it reproduces the [NOAA](http://www.noaa.gov/) National Weather Service (NWS) table (with some exception). Thus, given the ambient temperature in Fahrenheit degrees and the relative humidity in percentage, the regression equation is as follows:
+
+<!-- $$
+H\!I = c_1 + c_2 T + c_3 H + c_4 T H + c_5 T^2 + c_6 H^2 + c_7 T^2 H + c_8 T H^2 + c_9 T^2 H^2
+$$ -->
+
+<div align="center"><img src="..\..\svg\BtWmARJbte.svg"/></div>
+
+where T is the ambient dry bulb temperature in Fahrenheit degrees and H is the relative humidity in percentage.
+
+A set of onstants for this equation that is within ±1.7°C of the NWS table for all humidities between 0 and 80% and all temperatures from 21 to 46°C and all heat indexes below 66°C, are:
+
+- c<sub>1</sub> = 0.363445176,
+- c<sub>2</sub> = 0.988622465,
+- c<sub>3</sub> = 4.777114035,
+- c<sub>4</sub> = -0.114037667,
+- c<sub>5</sub> = -0.000850208,
+- c<sub>6</sub> = -0.020716198,
+- c<sub>7</sub> = 0.000687678,
+- c<sub>8</sub> = 0.000274954,
+- c<sub>9</sub> = 0.000000000.
+
+[1] R.G. Steadman, "*The Assessment of Sultriness. Part I: A Temperature-Humidity Index Based on Human Physiology and Clothing Science*". Journal of Applied Meteorology and Climatology, 18(7), pp. 861-873, 1979.
+
+[2] L.P. Rothfusz, "*The Heat Index Equation (or, More Than You Ever Wanted to Know About Heat Index)*", Scientific Services Division (NWS Southern Region Headquarters), 1990.
+
+### Luminosity-Brightness Index (LBI)
+
+This index is used to calculate how different (in percentage) are the observed values from the reference set-point in according with the existing legislation [UNI EN 12464](http://store.uni.com/magento-1.4.0.1/index.php/uni-en-12464-1-2011.html). This European Standard specifies lighting requirements in terms of quantity and quality of illumination for humans with normal ophthalmic (visual) capacity in indoor work places and their associated areas.
+<!-- $$
+L\!B\!I = 1 - \dfrac{|\overline{L} - L_B|}{L_B} \cdot 100
+$$ -->
+
+<div align="center"><img src="..\..\svg\0A8jqwXyS9.svg"/></div>
+
+For offices, it is recommended that light sources have 500 lux value for the necessary brightness.

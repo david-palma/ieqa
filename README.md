@@ -1,11 +1,15 @@
+<div align="center">
+    <img src="./figures/logo.png" alt="IEQA - logo." title="IEQA - logo" width="160px;"/>
+</div>
+
 # Indoor Environmental Quality Analyzer (IEQA)
 
 The I.E.Q.A. system consists of spatially distributed autonomous base stations equipped with sensors, LCD display, actuator, data storage device and a board that supports a Linux distribution with built-in WiFi support.
 Every single base station is able to send their acquired/stored data over WiFi in a Wireless Local Area Network (WLAN) to a virtual Linux server which is aimed to process and display data through a dedicated web application. The latter, processes the data using a mathematical model based on the combination of two parameters: Heat Index (HI), which is obtained by multiple regression analysis by considering the values of temperature and relative humidity, and the Luminosity-Brightness Index (LBI) that provides an index based on the detected brightness according to [UNI EN 12464](http://store.uni.com/magento-1.4.0.1/index.php/uni-en-12464-1-2011.html) (released by the [Italian National Unification](http://www.uni.com)).
 
-<p align="center">
-    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" width="400px;"></img>
-</p>
+<div align="center">
+    <img src="./figures/fig1.png" alt="Overall diagram of the system." title="Overall diagram of the system" width="400px;"/>
+</div>
 
 For more details explore the following sections:
 
@@ -55,9 +59,9 @@ The following table illustrates an example of network configuration of the whole
 | **Broadcast**     |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |  192.168.43.255 |
 | **Gateway**       |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |   192.168.43.1  |
 
-<p align="center">
-    <img src="./figures/fig2.png" alt="Detailed diagram of the network." title="Detailed diagram of the network" width="400px;"></img>
-</p>
+<div align="center">
+    <img src="./figures/fig2.png" alt="Detailed diagram of the network." title="Detailed diagram of the network" width="400px;"/>
+</div>
 
 In this case, the system is composed of 4 hosts, leaving space for another 249 hosts.
 
@@ -88,9 +92,9 @@ The dynamic web application has been developed making use of the LAMP (Linux, Ap
 
 With bridged networking, VirtualBox uses a device driver on the host system that filters data from the physical network adapter. This driver is therefore called a "net filter" driver and it allows VirtualBox to intercept data from the physical network and inject data into it, effectively creating a new network interface in software. When the guest is using such a new software interface, it looks to the host system as though the guest were physically connected to the interface using a network cable: the host can send data to the guest through that interface and receive data from it. From the following screenshots it can be seen the network settings of the server on VirtualBox and the network configuration detected on the Host.
 
-<p align="center">
-    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="500px;"></img>
-</p>
+<div align="center">
+    <img src="./figures/fig3.png" alt="Network configuration on VBox." title="Network configuration on VBox" width="500px;"/>
+</div>
 
 ## Hardware
 
@@ -114,13 +118,19 @@ With bridged networking, VirtualBox uses a device driver on the host system that
 
 ### Schematic of the base station and prototype
 
-<p align="center">
-    <img src="./figures/fig4.png" alt="Basic schematic of the base station." title="Basic schematic of the base station" width="700px;"></img>
-</p>
+<div align="center">
+    <img src="./figures/fig4.png" alt="Basic schematic of the base station." title="Basic schematic of the base station" width="700px;"/>
+</div>
 
-<p align="center">
-    <img src="./figures/fig5.png" alt="Prototype of the base station." title="Prototype of the base station" width="400px;"></img>
-</p>
+<div align="center">
+    <img src="./figures/fig5.png" alt="Prototype of the base station." title="Prototype of the base station" width="400px;"/>
+</div>
+
+<br />
+
+For more details explore the code:
+- [Firmware](./code/firmware);
+- [Web application](./code/webapp).
 
 ## License
 

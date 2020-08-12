@@ -8,9 +8,9 @@ In this section you can find a brief explanation of the Arduino Yún architectur
 
 In order to better understand how the board works, is reported a figure which sums up its internal architecture.
 
-<p align="center">
-    <img src="../../figures/fig6.png" alt="Board architecture." title="Board architecture" width="500px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig6.png" alt="Board architecture." title="Board architecture" width="500px;"/>
+</div>
 
 The Bridge library facilitates communication between the two processors, giving Arduino sketches the ability to run shell scripts, communicate with network interfaces, and receive information from the AR9331 processor. The USB host, network interfaces and SD card are connected to the Atheros AR9331 and the Bridge library enables the Arduino to interface with those peripherals.
 
@@ -35,15 +35,15 @@ There are two special functions that are a part of every Arduino sketch: `setup(
 
 - **Setup routine**
 
-<p align="center">
-    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="400px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig7.png" alt="Setup routine." title="Setup routine" width="400px;"/>
+</div>
 
 - **Loop routine**
 
-<p align="center">
-    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="400px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig8.png" alt="Loop routine." title="Loop routine" width="400px;"/>
+</div>
 
 ### Libraries
 
@@ -126,9 +126,9 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   A typical approach is to use an ON/OFF control action that turns the output ON or OFF based on a threshold point. However, due to small amounts of noise or temperature fluctuations near the threshold point, the output will turn ON and OFF frequently (also known as **chattering**). Thus, to prevent this from happening, a temperature band (**hysteresis**) is created between the ON and OFF operations.
   Then, an actuator is enabled/disabled as follows: when the input is higher than a chosen threshold, the output will be enabled, whereas when the input is below a different (lower) calculated threshold the output will be disabled. When the input is between the two levels, the output retains its status (see the figure below).
 
-<p align="center">
-    <img src="../../figures/fig9.png" alt="Alarm hysteresis." title="Alarm hysteresis" width="650px;"></img>
-</p>
+<div align="center">
+    <img src="../../figures/fig9.png" alt="Alarm hysteresis." title="Alarm hysteresis" width="650px;"/>
+</div>
 
 - `data_acquisition`
 

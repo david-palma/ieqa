@@ -410,7 +410,7 @@ function initDashboard()
    // Get data for the selected board
    var board = getBoard();
    document.getElementById("titleDataTable").innerHTML = "Data Table Board &#35;" + board;
-   
+
    sensorsTable = $('#sensorsTable').DataTable
                   ({
                      "dom":           "rtip",
@@ -555,7 +555,7 @@ function setDataDashboard()
       }
    });
 
-   
+
    // Set gauge for the selected board and update data
    setGauges();
 
@@ -598,7 +598,7 @@ function setGauges()
             Index[0] = HeatIndex(last_t, last_rh);
 
             // Computation of the Temperature-Humidity Index
-            Index[1] = THI(last_t, last_rh);
+            Index[1] = (THI(last_t, last_rh) - 32)/1.8;
 
             // Computation of the Luminosity/Brightness Index
             Index[2] = LBI(last_lum);
@@ -699,16 +699,16 @@ function HeatIndex(T, RH)
  */
 function THI(T, RH)
 {
-   var temp = (0.55 - 0.0055 * RH) *(T - 14.5);
-   return(T - temp);
+   var Tf   = T*1.8 + 32;
+   var temp = (0.55 - 0.0055 * RH) * (Tf - 58);
+   return(Tf - temp);
 }
 
 /* Computation of Luminosity-Brightness Index given the ambient luminosity in lux */
 function LBI(L)
 {
-   var perfectLum = 500; // UNI EN 12464
-   var y = L * (100 / perfectLum);
-   return((y > 100) ? 100 : y);
+    var bestLum  = 500;
+    return((1 - Math.abs(meanLum - bestLum)/ bestLum) * 100);
 }
 
 /* Selected chart */
@@ -857,50 +857,3 @@ $(document).ready(function()
       setButton();  // Set (update) button status (only on refresh)
    }
 });
-
-// Initialization of the gmaps
-/* function initialize()
-{
-   var uniud = new google.maps.LatLng(46.0807114,13.2115919); // position of DIEG
-
-   var mapOptions =
-   {
-      backgroundColor: '#B3D1FF',
-      center: uniud,
-      keyboardShortcuts: false,
-      mapTypeControl: true,
-      mapTypeControlOptions: { style:google.maps.MapTypeControlStyle.DROPDOWN_MENU },
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      rotateControl: true,
-      tilt: 40, // Angle of incidence of the map
-      zoom: 15
-   };
-
-   // Create a new map object
-   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-   var marker = new google.maps.Marker(
-   {
-      map: map,
-      position: uniud,
-      title: "DIEG",
-      animation: google.maps.Animation.DROP  // Set marker to drop
-   });
-
-   var contentString = '<p style="text-align: center;"><b> You can find us here!</b><br>' +
-                       'Dept. of Electrical, Menagement and Mechanical Engineering<br>' +
-                       'University of Udine<br>' +
-                       'Via delle Scienze 206, 33100 UD - Italy</p>';
-
-   // Create info boxes for the marker
-   var infoWindow = new google.maps.InfoWindow(
-   {
-      content: contentString
-   });
-
-   // add action event so the info windows will be shown when the marker is clicked
-   google.maps.event.addListener(marker, 'click', function()
-   {
-      infoWindow.open(map,marker);
-   });
-} */
