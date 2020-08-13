@@ -177,7 +177,7 @@ Temperature-Humidity Index is a measure of the reaction of the human body to a c
 T\!H\!I = (T \cdot 1.8 + 32) - (0.55 - 0.0055 \cdot H)\cdot[(T \cdot 1.8 + 32) - 58]
 $$ -->
 
-<div align="center"><img src="..\..\svg\sjnIESpbTE.svg"/></div>
+<div align="center"><img src="..\..\svg\eq1.svg"/></div>
 
 where T is the air temperature in Celsius degrees and H is the relative humidity in percentage. If THI is:
 
@@ -196,7 +196,7 @@ The function that makes the computation it is the result of a multivariate fit t
 H\!I = c_1 + c_2 T + c_3 H + c_4 T H + c_5 T^2 + c_6 H^2 + c_7 T^2 H + c_8 T H^2 + c_9 T^2 H^2
 $$ -->
 
-<div align="center"><img src="..\..\svg\BtWmARJbte.svg"/></div>
+<div align="center"><img src="..\..\svg\eq2.svg"/></div>
 
 where T is the ambient dry bulb temperature in Fahrenheit degrees and H is the relative humidity in percentage.
 
@@ -223,6 +223,6 @@ This index is used to calculate how different (in percentage) are the observed v
 L\!B\!I = 1 - \dfrac{|\overline{L} - L_B|}{L_B} \cdot 100
 $$ -->
 
-<div align="center"><img src="..\..\svg\0A8jqwXyS9.svg"/></div>
+<div align="center"><img src="..\..\svg\eq3.svg"/></div>
 
 For offices, it is recommended that light sources have 500 lux value for the necessary brightness.
