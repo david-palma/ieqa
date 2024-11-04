@@ -1,21 +1,21 @@
 # Firmware
 
-In this section you can find a brief explanation of the Arduino Yún architecture and some technical specs (for more details see [Arduino website](https://www.arduino.cc/)), the structure of the firmware, the libraries used by the board to work properly, and the main functions implemented.
+In this section, you will find a brief explanation of the Arduino Yún architecture and some technical specifications (for more details, see the [Arduino website](https://www.arduino.cc/)), the structure of the firmware, the libraries used by the board to function properly, and the main functions implemented.
 
-**Note**: even though the firmware has not been described in detail, the code is commented enough to be easily understood.
+**Note**: Even though the firmware has not been described in detail, the code is commented sufficiently to be easily understood.
 
 ## Arduino Yún architecture and technical specs
 
-In order to better understand how the board works, is reported a figure which sums up its internal architecture.
+To better understand how the board works, a figure summarizing its internal architecture is provided below.
 
 <div align="center">
     <img src="../../figures/fig6.png" alt="Board architecture." title="Board architecture" width="500px;"/>
 </div>
 
-The Bridge library facilitates communication between the two processors, giving Arduino sketches the ability to run shell scripts, communicate with network interfaces, and receive information from the AR9331 processor. The USB host, network interfaces and SD card are connected to the Atheros AR9331 and the Bridge library enables the Arduino to interface with those peripherals.
+The Bridge library facilitates communication between the two processors, allowing Arduino sketches to run shell scripts, communicate with network interfaces, and receive information from the AR9331 processor. The USB host, network interfaces, and SD card are connected to the Atheros AR9331, and the Bridge library enables the Arduino to interface with those peripherals.
 
 | AVR Arduino Yún microcontroller |                                                                                              | Linux microprocessor |                                                                                   |
-|---------------------------------|----------------------------------------------------------------------------------------------|----------------------|-----------------------------------------------------------------------------------|
+| ------------------------------- | -------------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------- |
 | Microcontroller                 | [ATmega32u4](http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf) | Processor            | [Atheros AR9331](https://www.openhacks.com/uploadsproductos/ar9331_datasheet.pdf) |
 | Operating Voltage               | 5 V                                                                                          | Architecture         | MIPS @400MHz                                                                      |
 | Input Voltage                   | 5 V                                                                                          | Operating Voltage    | 3.3 V                                                                             |
@@ -50,8 +50,9 @@ There are two special functions that are a part of every Arduino sketch: `setup(
 - `Bridge.h`
 
   This library allows the communication between the two processors previously described. Several classes of this library are used, such as:
+
   - `FileIO.h` used for read/write files on the microSD card;
-  - `Mailbox.h` which is an asynchronous, sessionless interface for communicating between Linux and Arduino;
+  - `Mailbox.h` which is an asynchronous, session-less interface for communicating between Linux and Arduino;
   - `Process.h` is used to launch processes on the Linux processor, and other things like shell scripts;
   - `YunClient.h` which is an Arduino based HTTP client;
   - `YunServer.h` which is an Arduino based HTTP server.
@@ -123,8 +124,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
 
 - `alarm`
 
-  A typical approach is to use an ON/OFF control action that turns the output ON or OFF based on a threshold point. However, due to small amounts of noise or temperature fluctuations near the threshold point, the output will turn ON and OFF frequently (also known as **chattering**). Thus, to prevent this from happening, a temperature band (**hysteresis**) is created between the ON and OFF operations.
-  Then, an actuator is enabled/disabled as follows: when the input is higher than a chosen threshold, the output will be enabled, whereas when the input is below a different (lower) calculated threshold the output will be disabled. When the input is between the two levels, the output retains its status (see the figure below).
+  A typical approach is to use an ON/OFF control action that turns the output ON or OFF based on a threshold point. However, due to small amounts of noise or temperature fluctuations near the threshold point, the output will turn ON and OFF frequently (also known as **chattering**). Thus, to prevent this from happening, a temperature band (**hysteresis**) is created between the ON and OFF operations. An actuator is then enabled or disabled as follows: when the input is higher than a chosen threshold, the output will be enabled, whereas when the input is below a different (lower) calculated threshold, the output will be disabled. When the input is between the two levels, the output retains its status (see the figure below).
 
 <div align="center">
     <img src="../../figures/fig9.png" alt="Alarm hysteresis." title="Alarm hysteresis" width="650px;"/>
@@ -132,7 +132,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
 
 - `data_acquisition`
 
-  This function calculates the average of N consecutive acquired values (for stability) for each sensor, thus the values are concatenated into a string as follows: `data = "s0=xx.xx&s1=xx.xx&s2=xx.xx&board=X&time=xxxxxxxxxxx"`, where the time is given by the `get_time` function (described below).
+  This function calculates the average of N consecutive acquired values for each sensor to ensure stability. The resulting values are concatenated into a string in the following format: `data = "s0=xx.xx&s1=xx.xx&s2=xx.xx&board=X&time=xxxxxxxxxxx"`, where the time is provided by the `get_time` function (described below).
 
 - `get_data`
 
@@ -145,7 +145,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   "Connection: close"
   ```
 
-  where *method* is a string that identifies what needed by the board, e.g. could be "get_time/" to synchronize the clock with the server, or "get_threshold_values/" to update the threshold values.
+  where _method_ is a string that identifies what needed by the board, e.g. could be "get_time/" to synchronize the clock with the server, or "get_threshold_values/" to update the threshold values.
 
 - `get_time`
 
@@ -181,7 +181,7 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
   data
   ```
 
-  where *method* is a string that identifies the type of connection (e.g., *close* or *keep-alive*), data.length() is the length of the data acquired, and data is a string with the data to post.
+  where _method_ is a string that identifies the type of connection (e.g., _close_ or _keep-alive_), data.length() is the length of the data acquired, and data is a string with the data to post.
 
 - `send_from_microSD`
 
@@ -197,4 +197,4 @@ unsigned long threshold[5] = { TEMP_MIN, TEMP_MAX, RH_MAX, LUX_MIN, TX_TIME };
 
 - `store_into_microSD`
 
-  Function that stores the acquired data into the microSD (path: `"mnt/sd/datalog.txt"`). Each entry in the file is equivalent to a string of 51 bytes which identifies the values acquired by the base station, the acquisition time, and the identification number of the base station itself. Given for instance a microSD card of just 1 GB, it is possible to store: 1 GB / 51 B = 21053761 entries. Thus, considering the maximum sampling rate (minimum sampling time) it is possible to store 121 months of acquisitions with a sampling time of 15 s.
+  Function that stores the acquired data into the microSD (path: `"mnt/sd/datalog.txt"`). Each entry in the file corresponds to a string of 51 bytes, which identifies the values acquired by the base station, the acquisition time, and the identification number of the base station itself. For instance, with a microSD card capacity of 1 GB, it is possible to store approximately 21053761 entries (1 GB / 51 B). Given the maximum sampling rate (i.e., minimum sampling time), this allows for the storage of acquisitions for up to 121 months with a sampling interval of 15 seconds.
